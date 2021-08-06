@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<!--
+Template Name: Corporation
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="dashboard">
+  <link rel="stylesheet" th:href="@{/assets/libs/css/layout.css}"/>
+<body id="top">
+<div class="wrapper col1">
+  <div id="head">
+    <h1><a th:href="@{index}">Cybertek</a></h1>
+    <p>Business Solutions</p>
+    <div id="topnav">
+      <ul>
+        <!--        <li><a class="active" href="index.html">Home</a></li>-->
+        <li><a class="nav-link" th:href="@{/home}">Home</a></li>
+
+        <li><a class="nav-link" th:href="@{/home}">Administrator</a>
+
+          <ul>
+            <li><a class="active" th:href="@{/user-create}">User Create</a></li>
+            <li><a th:href="@{/projectCreate}">Project create</a></li>
+          </ul>
+        </li>
+
+        <li><a class="nav-link" th:href="@{/home}">Manager</a>
+
+          <ul>
+            <li><a href="#">Task Assign</a></li>
+            <li><a href="#">Project Status</a></li>
+          </ul>
+        </li>
+        <li><a class="nav-link" th:href="@{/home}">Employee</a>
+          <ul>
+            <li><a href="#">Pending Tasks</a></li>
+            <li><a href="#">Archive</a></li>
+          </ul>
+        </li>
+        <li class="last"><a href="#">Contact</a></li>
+      </ul>
+    </div>
+<!--    <div id="search">-->
+<!--      <form action="#" method="post">-->
+<!--        <fieldset>-->
+<!--          <legend>Site Search</legend>-->
+<!--          <input type="submit" name="go" id="go" value="GO" />-->
+<!--          <input type="text" value="Search the site&hellip;"  onfocus="this.value=(this.value=='Search the site&hellip;')? '' : this.value ;" />-->
+<!--        </fieldset>-->
+<!--      </form>-->
+<!--    </div>-->
+  </div>
+</div>
+
+
+
+
+
+</body>
+
+
+</div>
+
+<html/>
