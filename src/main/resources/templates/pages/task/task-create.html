@@ -9,114 +9,118 @@
 <body>
 <div th:replace="fragments/dashboard :: dashboard">Dashboard</div>
 
-<div class="form-group row">
+<div class="dashboard wrapper">
 
-    <div class="col">
+    <div class="row">
 
-        <section class="panel panel-body align-self-lg-center">
-            <header class="panel-heading">
-                <h2 class="panel-title">Project Create</h2>
-            </header>
+        <div class="col-lg-6 col-md-12">
 
-            <div class="panel-body">
+            <section class="panel panel-transparent">
+                <header class="panel-heading">
+                    <h2 class="panel-title">Project Create</h2>
+                </header>
 
-                <!--   ------------------------FORM START----------------------------- -->
-                <div class="col">
-                    <form class="needs-validation" novalidate th:action="@{/project/create}"
-                          th:method="post">
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="projectname" class="col-form-label">Project
-                                        Name</label>
-                                    <input id="projectname" type="text" class="form-control"
-                                           placeholder="project name" required
-                                    >
-                                    <div class="invalid-feedback">
-                                        Please enter project name.
+                <div class="panel-body">
+
+                    <!-- ------------------------FORM START----------------------------- -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <form class="needs-validation" novalidate th:action="@{/project/create}"
+                              th:method="post" >
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectname" class="col-form-label">Project
+                                            Name</label>
+                                        <input id="projectname" type="text" class="form-control"
+                                               placeholder="project name" required
+                                             >
+                                        <div class="invalid-feedback">
+                                            Please enter project name.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="projected" class="col-form-label">Project
-                                        Code</label>
-                                    <input id="projected" type="text" class="form-control"
-                                           placeholder="project code" >
-
-                                    <div class="invalid-feedback">
-                                        Please enter project code.
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="projected" class="col-form-label">Project
+                                            Code</label>
+                                        <input id="projected" type="text" class="form-control"
+                                               placeholder="project code" required
+                                              >
+                                        <div class="invalid-feedback">
+                                            Please enter project code.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="input-select">Assigned Manager</label>
-                                    <select class="form-control" id="input-select"
-                                            } required="required" >
-                                        <option th:value="''" th:text="Select"></option>
-                                        <option
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="input-select">Assigned Manager</label>
+                                        <select class="form-control" id="input-select"
+                                                required="required">
+                                            <option th:value="''" th:text="Select"></option>
+<!--                                            <option th:each="manager :${managers}"-->
+<!--                                                    th:value="${manager.userName}"-->
+<!--                                                    th:text="${manager.firstName+' '+manager.lastName}"></option>-->
 
-                                        ></option>
-
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label>Project Start Date</label><br>
-                                    <div class="input-group date" id="datetimepicker7"
-                                         data-target-input="nearest">
-                                        <input type="date"
-                                               class="form-control datetimepicker-input"
-                                               data-target="#datetimepicker7"/>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label>Project End Date</label>
-                                    <div class="input-group date" id="datetimepicker8"
-                                         data-target-input="nearest">
-                                        <input type="date"
-                                               class="form-control datetimepicker-input"
-                                               data-target="#datetimepicker8"/>
+                            <div class="row">
+                                <div class="col-sm-3 col-md-3">
+                                    <div class="form-group">
+                                        <label>Project Start Date</label><br>
+                                        <div class="input-group date" id="datetimepicker7"
+                                             data-target-input="nearest">
+                                            <input type="date"
+                                                   class="form-control datetimepicker-input"
+                                                   data-target="#datetimepicker7"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-md-3">
+                                    <div class="form-group">
+                                        <label>Project End Date</label>
+                                        <div class="input-group date" id="datetimepicker8"
+                                             data-target-input="nearest">
+                                            <input type="date" th:text="date"
+                                                   class="form-control datetimepicker-input"
+                                                   data-target="#datetimepicker8"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Project
-                                        Detail</label>
-                                    <textarea class="form-control"
-                                              id="exampleFormControlTextarea1"
-                                              rows="3"></textarea>
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Project
+                                            Detail</label>
+                                        <textarea class="form-control"
+                                                  id="exampleFormControlTextarea1"
+                                                  rows="3"></textarea>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="float-right">
-                                    <button class="btn btn-success rounded" type="submit">Save
-                                    </button>
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="float-right">
+                                        <button class="btn btn-success rounded" type="submit">Save
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                    <!-- ------------------------FORM END----------------------------- -->
+
                 </div>
-                <!-- ------------------------FORM END----------------------------- -->
 
-            </div>
+            </section>
 
-        </section>
+        </div>
 
     </div>
 

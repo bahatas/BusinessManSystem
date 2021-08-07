@@ -9,10 +9,10 @@ Licence URI: http://www.os-templates.com/template-terms
 -->
 <html xmlns:th="http://www.thymeleaf.org">
 
-<div th:fragment="dashboard">
+<div th:fragment="dashboard" class="card sticky-top">
   <link rel="stylesheet" th:href="@{/assets/libs/css/layout.css}"/>
 <body id="top">
-<div class="wrapper col1">
+<div class="wrapper col1 card sticky-top">
   <div id="head">
     <h1><a th:href="@{index}">Cybertek</a></h1>
     <p>Business Solutions</p>
@@ -32,7 +32,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <li><a class="nav-link" th:href="@{/home}">Manager</a>
 
           <ul>
-            <li><a href="#">Task Assign</a></li>
+            <li><a th:href="@{/task/create}">Task Assign</a></li>
             <li><a href="#">Project Status</a></li>
           </ul>
         </li>
@@ -45,15 +45,15 @@ Licence URI: http://www.os-templates.com/template-terms
         <li class="last"><a href="#">Contact</a></li>
       </ul>
     </div>
-<!--    <div id="search">-->
-<!--      <form action="#" method="post">-->
-<!--        <fieldset>-->
-<!--          <legend>Site Search</legend>-->
-<!--          <input type="submit" name="go" id="go" value="GO" />-->
-<!--          <input type="text" value="Search the site&hellip;"  onfocus="this.value=(this.value=='Search the site&hellip;')? '' : this.value ;" />-->
-<!--        </fieldset>-->
-<!--      </form>-->
-<!--    </div>-->
+    <div id="search">
+      <form action="#" method="post">
+        <fieldset>
+          <legend>Site Search</legend>
+          <input type="submit" name="go" id="go" value="GO" />
+          <input type="text" value="Search the site&hellip;"  onfocus="this.value=(this.value=='Search the site&hellip;')? '' : this.value ;" />
+        </fieldset>
+      </form>
+    </div>
   </div>
 </div>
 

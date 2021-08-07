@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/project")
+@RequestMapping("/task")
 public class TaskController {
 
 
     @GetMapping("/create")
     public String createProject(){
 
-        return "/pages/project/project-create";
+        return "/pages/task/task-create";
     }
 }
