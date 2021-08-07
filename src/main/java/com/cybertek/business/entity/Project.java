@@ -1,14 +1,13 @@
 package com.cybertek.business.entity;
 
+import com.cybertek.business.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
@@ -22,7 +21,7 @@ public class Project extends BaseEntity {
 
     private String projectCode;
 
-    @ManyToOne(FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="manager_id")
     private User assignedManager;
 
