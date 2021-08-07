@@ -243,6 +243,18 @@ ul li {}
  Form
 ---------------------*/
 
+.float-container {
+    border: 3px solid #050505;
+    padding: 20px;
+}
+
+.float-child {
+    width: 50%;
+    float: left;
+    padding: 200px;
+    border: 2px solid red;
+}
+
 label {
     display: inline-block;
     max-width: 100%;

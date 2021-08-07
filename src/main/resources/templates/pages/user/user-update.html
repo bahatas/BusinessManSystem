@@ -8,7 +8,17 @@
 <body>
 <div th:replace="fragments/dashboard :: dashboard">Dashboard</div>
 
+<div class="float-container">
 
+    <div class="float-child">
+        <div class="green">Float Column 1</div>
+    </div>
+
+    <div class="float-child">
+        <div class="blue">Float Column 2</div>
+    </div>
+
+</div>
 
 
 <div class="wrapper col4">
@@ -25,6 +35,7 @@
 
                             <div class="col-lg-6 col-md-12">
 
+
                                 <section class="panel panel-transparent">
                                     <header class="panel-heading">
                                         <h2 class="panel-title">User Create</h2>
@@ -35,7 +46,7 @@
                                         <!-- ------------------------FORM START----------------------------- -->
                                         <form class="needs-validation" novalidate th:action="@{/user/create}" method="post" >
                                             <div class="row">
-                                                <div class="col-sm-6 col-md-6">
+                                                <div class="col-sm-12 col-md-12">
                                                     <div class="form-group">
                                                         <label for="firstname" class="col-form-label">First Name</label>
                                                         <input id="firstname" type="text" placeholder="first name"  class="form-control" required>
