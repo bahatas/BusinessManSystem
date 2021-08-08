@@ -15,13 +15,6 @@ public class LoginController {
         return "home";
     }
 
-    @GetMapping("/grocery")
-    public String createPage(Model model){
-
-        model.addAttribute("name","Baha Eklendi");
-
-        return "grocery";
-    }
 
     @GetMapping("/index")
     public String create1(){
