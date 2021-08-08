@@ -19,7 +19,7 @@ public class User extends BaseEntity {
     private String lastName;
     private String userName;
     private String passWord;
-    private Boolean isEnabled;
+    private Boolean enabled;
     private String phone;
 
     @Enumerated(EnumType.STRING)

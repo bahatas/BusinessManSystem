@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "role_table")
+@Table(name = "roles_table")
 public class Role extends BaseEntity {
     private String description;
 }
