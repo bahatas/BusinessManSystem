@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
@@ -23,15 +24,15 @@ public class BaseEntity {
     private Long id;
 
     @Column(nullable=false,updatable = false)
-    private LocalDateTime insertDateTime;
+    private LocalDateTime insertDateTime= LocalDateTime.now();
 
-    @Column(nullable=false, updatable= false)
+    @Column(updatable= false)
     private Long insertUserId;
 
-    @Column(nullable=false)
+    @Column
     private LocalDateTime lastUpdateDateTime;
 
-    @Column(nullable = false)
+    @Column
     private Long lastUpdateUserId;
 
 
