@@ -7,6 +7,7 @@ import com.cybertek.business.repository.UserRepository;
 import com.cybertek.business.service.UserService;
 import org.springframework.data.domain.Sort;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,11 +20,11 @@ public class UserServiceImpl implements UserService {
     private MapperUtil mapperUtil;
     private PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, MapperUtil mapperUtil) {
+    public UserServiceImpl(UserRepository userRepository, MapperUtil mapperUtil, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.mapperUtil = mapperUtil;
+        this.passwordEncoder = passwordEncoder;
     }
-//  private PasswordEncoder passwordEncoder; TODO
 
     @Override
     public List<UserDTO> listAllUser() {
