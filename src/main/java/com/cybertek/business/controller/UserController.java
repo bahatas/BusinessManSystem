@@ -48,10 +48,10 @@ public class UserController {
     }
 
     @PostMapping("/update/{username}")
-    public String updateUser(Model model, @PathVariable("username") String username) {
-        userService.update();
+    public String updateUser(Model model, @PathVariable("username") String username,UserDTO userDTO) {
+        userService.update(userDTO);
 
-        return "pages/user/user-update";
+        return "redirect:/user/user-create";
     }
 
     @GetMapping("/delete/{username}")
