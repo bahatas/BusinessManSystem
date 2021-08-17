@@ -7,7 +7,7 @@ import com.cybertek.business.repository.UserRepository;
 import com.cybertek.business.service.UserService;
 import org.springframework.data.domain.Sort;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,12 +18,12 @@ public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
     private MapperUtil mapperUtil;
-    private PasswordEncoder passwordEncoder;
+//    private PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, MapperUtil mapperUtil, PasswordEncoder passwordEncoder) {
+
+    public UserServiceImpl(UserRepository userRepository, MapperUtil mapperUtil) {
         this.userRepository = userRepository;
         this.mapperUtil = mapperUtil;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
         //Map update user dto to entity objectt
 
         User convertedUser  = mapperUtil.convert(userDTO,new User());
-        convertedUser.setPassWord(passwordEncoder.encode(convertedUser.getPassWord()));
+//        convertedUser.setPassWord(passwordEncoder.encode(convertedUser.getPassWord())); todo
         convertedUser.setId(userEnt.getId());
 
 
