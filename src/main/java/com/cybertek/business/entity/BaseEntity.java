@@ -26,13 +26,13 @@ public class BaseEntity {
     @Column(nullable=false,updatable = false)
     private LocalDateTime insertDateTime= LocalDateTime.now();
 
-    @Column(updatable= false)
+    @Column(updatable= false, nullable = false)
     private Long insertUserId;
 
-    @Column
+    @Column(nullable = false)
     private LocalDateTime lastUpdateDateTime;
 
-    @Column
+    @Column(nullable = false)
     private Long lastUpdateUserId;
 
 

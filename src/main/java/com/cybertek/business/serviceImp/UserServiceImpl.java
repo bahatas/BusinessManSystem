@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,6 +59,9 @@ public class UserServiceImpl implements UserService {
         //encode password TODO
         //user.setPassWord(passwordEncoder.encode(user.getPassWord()));
 
+        user.setInsertUserId(1L);//todo
+        user.setLastUpdateUserId(1L);//todo
+        user.setLastUpdateDateTime(LocalDateTime.now());
         userRepository.save(user);
     }
 
@@ -72,6 +76,10 @@ public class UserServiceImpl implements UserService {
         User convertedUser  = mapperUtil.convert(userDTO,new User());
 //        convertedUser.setPassWord(passwordEncoder.encode(convertedUser.getPassWord())); todo
         convertedUser.setId(userEnt.getId());
+        convertedUser.setInsertUserId(1L);//todo
+        convertedUser.setLastUpdateUserId(1L);//todo
+        convertedUser.setLastUpdateDateTime(LocalDateTime.now());
+
 
 
         //save updated user
@@ -93,7 +101,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> listAllByRole(String role) {
-        return null;
+
+        List<User> manager = userRepository.findAll().stream().filter(each ->
+                each.getRole().getDescription().equalsIgnoreCase("manager")).collect(Collectors.toList());
+
+        return manager.stream().map(each->mapperUtil.convert(each, new UserDTO())).collect(Collectors.toList());
+
     }
 
     @Override
