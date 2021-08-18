@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: dashboard">
-    <title>User Create</title>
+    <title>User Update</title>
     <!--    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>-->
 
 
@@ -28,7 +28,7 @@
 
                                 <section class="panel panel-transparent">
                                     <header class="panel-heading">
-                                        <h2 class="panel-title">User Create</h2>
+                                        <h2 class="panel-title">User Update</h2>
                                     </header>
 
                                     <div class="panel-body">
@@ -140,12 +140,14 @@
                                                     <div class="form-group">
                                                         <label for="input-select">Choose a Role</label>
 
-                                                        <select th:field="*{role}" class="custom-select"
+                                                        <select  class="form-control" name="role"
                                                                 id="input-select" required="required">
-                                                            <option id="userRoleSelect" th:value=" '' "
-                                                                    th:text="Select"></option>
-                                                            <option id="eachUserRole" th:each="eachrole :${roles}" th:value="${eachrole.id}"
-                                                                    th:text="${eachrole.description}"></option>
+
+                                                            <option th:each="r : ${roles} " th:value="${r.id}"
+                                                                    th:text="${r.description}"
+                                                                    th:selected="(${r.id}== *{role.id})">
+
+                                                            </option>
 
                                                         </select>
 
@@ -209,12 +211,12 @@
                                                 <td th:text="${eachuser.phone}"></td>
                                                 <td th:text="${eachuser.role.description}"></td>
                                                 <td class="actions">
-                                                    <a th:href="@{user/update/{id} (id=${user.userName})}">
+                                                    <a th:href="@{user/update/{id} (id=${eachuser.userName})}">
                                                         <button type="button" class="btn btn-warning btn-sm">
                                                             Update
                                                         </button>
                                                     </a>
-                                                    <a th:href="@{user/delete/{id}(id=${user.userName}) }" class="delete-row"> </a>
+                                                    <a th:href="@{user/delete/{id}(id=${eachuser.userName}) }" class="delete-row"> </a>
                                                     <button type="button" class="btn btn-warning btn-sm">
                                                         Delete
                                                     </button>

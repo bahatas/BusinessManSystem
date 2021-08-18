@@ -10,13 +10,23 @@
 <div th:replace="fragments/dashboard :: dashboard">Dashboard</div>
 
 
-
+<div class="wrapper col2">
+    <div id="breadcrumb">
+        <ul>
+            <li class="first">You Are Here</li>
+            <li>&#187;</li>
+            <li><a href="#">Administrator</a></li>
+            <li>&#187;</li>
+            <li class="current"><a href="#">User Create</a></li>
+        </ul>
+    </div>
+</div>
 
 <div class="wrapper col-3">
     <div id="container">
         <div class="dashboard-wrapper">
 
-            <div class="dashboard-ecommerce">
+            <div class="dashboard-influence">
 
                 <div class="container-fluid dashboard-content">
 
@@ -209,12 +219,12 @@
                                                     <td th:text="${eachuser.phone}"></td>
                                                     <td th:text="${eachuser.role.description}"></td>
                                                     <td class="actions">
-                                                        <a th:href="@{user/update/{id} (id=${user.userName})}">
-                                                            <button type="button" class="btn btn-warning btn-sm">
+                                                        <a th:href="@{/user/update/{username} (username=${eachuser.userName})}">
+                                                            <button type="button"  class="btn btn-facebook rounded-0">
                                                                 Update
                                                             </button>
                                                         </a>
-                                                        <a th:href="@{user/delete/{id}(id=${user.userName}) }" class="delete-row"> </a>
+                                                        <a th:href="@{/user/delete/{id}(id=${eachuser.userName}) }" class="delete-row"> </a>
                                                         <button type="button" class="btn btn-warning btn-sm">
                                                             Delete
                                                         </button>

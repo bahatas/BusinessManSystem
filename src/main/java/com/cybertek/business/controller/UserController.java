@@ -38,8 +38,8 @@ public class UserController {
         return "redirect:/user/create";
     }
 
-    @GetMapping("/update/{username}")
-    public String editUser(Model model, @PathVariable("username") String username) {
+    @GetMapping("/update/{userName}")
+    public String editUser(@PathVariable("userName") String username,Model model) {
         model.addAttribute("updatedUser", userService.findByUserName(username));
         model.addAttribute("userList", userService.listAllUser());
         model.addAttribute("roles", roleService.listAllRoles());

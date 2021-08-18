@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping
 public class LoginController {
 
 
-    @GetMapping()
+    @GetMapping("/login")
     public String login(){
         return "/login";
     }
@@ -27,5 +28,11 @@ public class LoginController {
     public String create1(){
 
         return "/index";
+    }
+
+    @GetMapping()
+    public String homePage(){
+
+        return "/home";
     }
 }
