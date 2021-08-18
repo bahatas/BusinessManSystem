@@ -220,14 +220,15 @@
                                                     <td th:text="${eachuser.role.description}"></td>
                                                     <td class="actions">
                                                         <a th:href="@{/user/update/{username} (username=${eachuser.userName})}">
-                                                            <button type="button"  class="btn btn-facebook rounded-0">
+                                                            <button type="button" class="btn btn-facebook rounded-0">
                                                                 Update
                                                             </button>
                                                         </a>
-                                                        <a th:href="@{/user/delete/{id}(id=${eachuser.userName}) }" class="delete-row"> </a>
-                                                        <button type="button" class="btn btn-warning btn-sm">
-                                                            Delete
-                                                        </button>
+                                                        <a th:href="@{/user/delete/{username}(username=${eachuser.userName}) }"
+                                                           class="delete-row">
+                                                            <button type="button" class="btn btn-facebook rounded-0">
+                                                                Delete
+                                                            </button>
                                                         </a>
                                                     </td>
 

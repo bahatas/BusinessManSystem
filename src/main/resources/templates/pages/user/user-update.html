@@ -35,7 +35,6 @@
 
                                         <!-- ------------------------FORM START----------------------------- -->
                                         <form  class="needs-validation" novalidate th:action="@{/user/update/{id}(id=${updatedUser.userName})}" method="post" th:object="${updatedUser}">
-                                              method="post" th:object="${user}">
                                             <div class="row">
                                                 <div class="col-sm-6 col-md-6">
                                                     <div class="form-group">
@@ -211,16 +210,16 @@
                                                 <td th:text="${eachuser.phone}"></td>
                                                 <td th:text="${eachuser.role.description}"></td>
                                                 <td class="actions">
-                                                    <a th:href="@{user/update/{id} (id=${eachuser.userName})}">
-                                                        <button type="button" class="btn btn-warning btn-sm">
+                                                    <a th:href="@{/user/update/{username} (username=${eachuser.userName})}">
+                                                        <button type="button"  class="btn btn-warning btn-sm">
                                                             Update
                                                         </button>
                                                     </a>
-                                                    <a th:href="@{user/delete/{id}(id=${eachuser.userName}) }" class="delete-row"> </a>
+                                                    <a th:href="@{/user/delete/{id}(id=${eachuser.userName}) }" class="delete-row"> </a>
                                                     <button type="button" class="btn btn-warning btn-sm">
                                                         Delete
                                                     </button>
-                                                    </a>
+
                                                 </td>
 
 

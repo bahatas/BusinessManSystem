@@ -51,7 +51,7 @@ public class UserController {
     public String updateUser(Model model, @PathVariable("username") String username,UserDTO userDTO) {
         userService.update(userDTO);
 
-        return "redirect:/user/user-create";
+        return "redirect:/user/create";
     }
 
     @GetMapping("/delete/{username}")
@@ -60,6 +60,6 @@ public class UserController {
 
         userService.delete(username);
 
-        return "redirect:/user/user-create";
+        return "redirect:/user/create";
     }
 }
