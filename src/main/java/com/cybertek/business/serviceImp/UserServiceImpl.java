@@ -6,8 +6,6 @@ import com.cybertek.business.mapper.MapperUtil;
 import com.cybertek.business.repository.UserRepository;
 import com.cybertek.business.service.UserService;
 import org.springframework.data.domain.Sort;
-
-
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -102,8 +100,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDTO> listAllByRole(String role) {
 
-        List<User> manager = userRepository.findAll().stream().filter(each ->
-                each.getRole().getDescription().equalsIgnoreCase("manager")).collect(Collectors.toList());
+        List<User> manager=userRepository.findAllByRoleDescriptionIgnoreCase("manager");
+
+//        List<User> manager = userRepository.findAll().stream().filter(each ->
+//                each.getRole().getDescription().equalsIgnoreCase("manager")).collect(Collectors.toList());
 
         return manager.stream().map(each->mapperUtil.convert(each, new UserDTO())).collect(Collectors.toList());
 

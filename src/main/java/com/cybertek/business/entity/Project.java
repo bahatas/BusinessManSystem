@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,11 +15,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name="projectsTable")
+@Table(name="projects_table")
+@Where(clause = "is_deleted=false")
 public class Project extends BaseEntity {
 
     private String projectName;
 
+    @Column(unique = true)
     private String projectCode;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -27,8 +30,11 @@ public class Project extends BaseEntity {
 
     private LocalDate startDate;
     private LocalDate endDate;
-    private LocalDate projectDetail;
 
+    @Column(columnDefinition = "text")
+    private String projectDetail;
+
+    @Enumerated(EnumType.STRING)
     private Status status;
 
 

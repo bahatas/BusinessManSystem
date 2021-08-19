@@ -36,9 +36,11 @@ public class ProjectController {
 
 
     @PostMapping("/create")
-    public String postCreateProject(){
+    public String postCreateProject(ProjectDTO projectDTO){
 
-        return "/pages/project/project-create";
+        projectService.save(projectDTO);
+        userService.save(projectDTO.getAssignedManager());
+        return "redirect:/project/create";
     }
 
     @GetMapping ("/update/{id}")

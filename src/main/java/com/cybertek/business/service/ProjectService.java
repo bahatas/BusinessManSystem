@@ -14,7 +14,7 @@ public interface ProjectService {
 
     List<ProjectDTO> listAllProjects();
 
-    Project save(ProjectDTO projectDTO);
+    void save(ProjectDTO projectDTO);
 
     void update( ProjectDTO projectDTO);
 
