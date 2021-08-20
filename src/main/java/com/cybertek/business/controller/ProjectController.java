@@ -7,10 +7,7 @@ import com.cybertek.business.service.ProjectService;
 import com.cybertek.business.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/project")
@@ -46,6 +43,36 @@ public class ProjectController {
     @GetMapping ("/update/{id}")
     public String updateProject (@PathVariable("id") String projectCode, Model model){
 
+
+        model.addAttribute("updateProject",projectService.getByProjectCode(projectCode));
+        model.addAttribute("listOfAllProjects",projectService.listAllProjects());
+        model.addAttribute("managers",userService.listAllByRole("manager"));
+
         return "/pages/project/project-update";
+    }
+
+    @PostMapping ("/update/projectCode}")
+    public String updateProject2 (@PathVariable("projectCode") String projectCode, Model model, ProjectDTO projectDTO){
+
+        model.addAttribute("updateProject",projectService.getByProjectCode(projectCode));
+
+        projectService.update(projectService.getByProjectCode(projectCode));
+        return "/pages/project/project-update";
+    }
+
+    @DeleteMapping("/delete/{projectCode}")
+    public String delete(@PathVariable("projectCode") String projectCode){
+
+        projectService.delete(projectCode);
+
+        return "redirect:project/create";
+    }
+
+    @GetMapping("/complete/{projectCode}")
+    public String updateStatus(@PathVariable("projectCode") String projectCode){
+
+
+        projectService.complete(projectCode);
+        return "redirect:project/create";
     }
 }

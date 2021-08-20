@@ -75,7 +75,7 @@
                                                              th:field="*{assignedManager}">
                                                                  <option th:value="''" th:text="Select"></option>
                                                                  <option th:each="manager:${managers}"
-                                                                         th:value="${manager.id}"
+                                                                         th:value="${manager.userName}"
                                                                          th:text="${manager.firstName + ' '+manager.lastName}"
 
                                                                  ></option>

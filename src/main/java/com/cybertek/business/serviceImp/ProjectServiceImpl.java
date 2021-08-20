@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -58,6 +59,14 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public void update(ProjectDTO projectDTO) {
+
+        Project project = projectRepository.findByProjectCode(projectDTO.getProjectCode());
+        mapperUtil.convert(projectDTO, convertedToEntity);
+
+        project.setLastUpdateDateTime(LocalDateTime.now());
+        project.setLastUpdateUserId(1L); // todo after security implementation
+
+        projectRepository.save(project);
 
     }
 

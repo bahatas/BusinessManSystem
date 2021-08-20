@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: dashboard">
     <title>Project Create</title>
-    <!--    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>-->
+
 
 
 </head>
@@ -22,29 +22,30 @@
 
                     <div class="ecommerce-widget">
 
-                        <div class="row">
+                        <div class="form-group row">
 
-                            <div class="col-lg-12 col-md-12">
+                            <div class="col">
 
-                                <section class="panel panel-transparent">
+                                <section class="panel panel-body align-self-lg-center">
                                     <header class="panel-heading">
                                         <h2 class="panel-title">Project Create</h2>
                                     </header>
 
                                     <div class="panel-body">
 
-                                        <!-- ------------------------FORM START----------------------------- -->
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <!--   ------------------------FORM START----------------------------- -->
+                                        <div class="col">
                                             <form class="needs-validation" novalidate th:action="@{/project/create}"
-                                                  th:method="post">
+                                                  th:method="post"
+                                                  th:object="${project}">
                                                 <div class="row">
-                                                    <div class="col-sm-6 col-md-6">
+                                                    <div class="col">
                                                         <div class="form-group">
                                                             <label for="projectname" class="col-form-label">Project
                                                                 Name</label>
                                                             <input id="projectname" type="text" class="form-control"
                                                                    placeholder="project name" required
-                                                            >
+                                                                   th:field="*{projectName}">
                                                             <div class="invalid-feedback">
                                                                 Please enter project name.
                                                             </div>
@@ -52,12 +53,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-sm-6 col-md-6">
+                                                    <div class="col">
                                                         <div class="form-group">
                                                             <label for="projected" class="col-form-label">Project
                                                                 Code</label>
                                                             <input id="projected" type="text" class="form-control"
-                                                                   placeholder="project code" >
+                                                                   placeholder="project code"
+                                                                   th:field="*{projectCode}">
 
                                                             <div class="invalid-feedback">
                                                                 Please enter project code.
@@ -66,13 +68,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-sm-6 col-md-6">
+                                                    <div class="col">
                                                         <div class="form-group">
                                                             <label for="input-select">Assigned Manager</label>
                                                             <select class="form-control" id="input-select"
-                                                                    } required="required" >
+                                                                    th:field="*{assignedManager}">
                                                                 <option th:value="''" th:text="Select"></option>
-                                                                <option
+                                                                <option th:each="manager:${managers}"
+                                                                        th:value="${manager.userName}"
+                                                                        th:text="${manager.firstName + ' '+manager.lastName}"
 
                                                                 ></option>
 
@@ -81,42 +85,50 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-sm-3 col-md-3">
+                                                    <div class="col-sm-12 col-md-12">
                                                         <div class="form-group">
                                                             <label>Project Start Date</label><br>
                                                             <div class="input-group date" id="datetimepicker7"
                                                                  data-target-input="nearest">
-                                                                <input type="date"
-                                                                       class="form-control datetimepicker-input"
-                                                                       data-target="#datetimepicker7"/>
+                                                                <label>
+                                                                    <input type="date"
+                                                                           class="form-control datetimepicker-input"
+                                                                           data-target="#datetimepicker7"
+                                                                           th:field="*{startDate}"/>
+                                                                </label>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-3 col-md-3">
+                                                    <div class="col-sm-12 col-md-12">
                                                         <div class="form-group">
-                                                            <label>Project End Date</label>
+                                                            <label>Project End Date</label><br>
                                                             <div class="input-group date" id="datetimepicker8"
                                                                  data-target-input="nearest">
-                                                                <input type="date"
-                                                                       class="form-control datetimepicker-input"
-                                                                       data-target="#datetimepicker8"/>
+                                                                <label>
+                                                                    <input type="date"
+                                                                           class="form-control datetimepicker-input"
+                                                                           data-target="#datetimepicker8"
+                                                                           th:field="*{endDate}"/>
+                                                                </label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                    <div class="col">
                                                         <div class="form-group">
-                                                            <label for="exampleFormControlTextarea1">Project
+                                                            <label for="formControlTextarea1">Project
                                                                 Detail</label>
                                                             <textarea class="form-control"
-                                                                      id="exampleFormControlTextarea1"
-                                                                      rows="3"></textarea>
+                                                                      id="formControlTextarea1"
+                                                                      rows="3"
+                                                                      th:field="*{projectDetail}"
+                                                            ></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-sm-6 col-md-6">
+                                                    <div class="col">
                                                         <div class="float-right">
                                                             <button class="btn btn-success rounded" type="submit">Save
                                                             </button>
@@ -139,7 +151,6 @@
 
 
                     <!-- ------------------------TABLE START----------------------------- -->
-
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
                             <div class="col-md-12">
@@ -161,7 +172,29 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-
+                                                <tr th:each="project: ${listOfAllProjects}">
+                                                    <td th:text="${project.projectCode}"></td>
+                                                    <td th:text="${project.projectName}"></td>
+                                                    <td th:text="${#temporals.format(project.startDate,'MM.dd.yyyy') +' ' + #temporals.format(project.endDate,'MM.dd.yyyy')}"></td>
+                                                    <td th:text="${project.assignedManager.firstName + ' ' + project.assignedManager.lastName}"></td>
+                                                    <td th:text="${project.status}"></td>
+                                                    <td class="actions">
+                                                        <a th:href="@{/project/update/{id}(id=${project.projectCode})}">
+                                                            <button type="button" class="btn btn-warning btn-sm">Update
+                                                            </button>
+                                                        </a>
+                                                        <a th:href="@{/project/delete/{id}(id=${project.projectCode})}">
+                                                            <button type="button" class="btn btn-secondary btn-sm">
+                                                                Delete
+                                                            </button>
+                                                        </a>
+                                                        <a th:href="@{/project/complete/{id}(id=${project.projectCode})}">
+                                                            <button type="button" class="btn btn-facebook btn-sm">
+                                                                Complete
+                                                            </button>
+                                                        </a>
+                                                    </td>
+                                                </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -170,6 +203,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
