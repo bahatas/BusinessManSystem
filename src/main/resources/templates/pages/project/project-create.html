@@ -179,16 +179,16 @@
                                                     <td th:text="${project.assignedManager.firstName + ' ' + project.assignedManager.lastName}"></td>
                                                     <td th:text="${project.status}"></td>
                                                     <td class="actions">
-                                                        <a th:href="@{/project/update/{id}(id=${project.projectCode})}">
+                                                        <a th:href="@{/project/update/{projectCode}(projectCode=${project.projectCode})}">
                                                             <button type="button" class="btn btn-warning btn-sm">Update
                                                             </button>
                                                         </a>
-                                                        <a th:href="@{/project/delete/{id}(id=${project.projectCode})}">
+                                                        <a th:href="@{/project/delete/{projectCode}(projectCode=${project.projectCode})}">
                                                             <button type="button" class="btn btn-secondary btn-sm">
                                                                 Delete
                                                             </button>
                                                         </a>
-                                                        <a th:href="@{/project/complete/{id}(id=${project.projectCode})}">
+                                                        <a th:href="@{/project/complete/{projectCode}(projectCode=${project.projectCode})}">
                                                             <button type="button" class="btn btn-facebook btn-sm">
                                                                 Complete
                                                             </button>

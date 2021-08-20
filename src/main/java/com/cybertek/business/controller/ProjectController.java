@@ -7,6 +7,7 @@ import com.cybertek.business.service.ProjectService;
 import com.cybertek.business.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.context.support.ResourceBundleThemeSource;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -26,6 +27,8 @@ public class ProjectController {
 
         model.addAttribute("project",new ProjectDTO());
         model.addAttribute("listOfAllProjects",projectService.listAllProjects());
+
+        System.out.println("projectService.listAllProjects() = " + projectService.listAllProjects());
         model.addAttribute("managers",userService.listAllByRole("manager"));
 
         return "/pages/project/project-create";
@@ -40,11 +43,11 @@ public class ProjectController {
         return "redirect:/project/create";
     }
 
-    @GetMapping ("/update/{id}")
-    public String updateProject (@PathVariable("id") String projectCode, Model model){
+    @GetMapping ("/update/{projectCode}")
+    public String updateProject (@PathVariable("projectCode") String projectCode, Model model){
 
 
-        model.addAttribute("updateProject",projectService.getByProjectCode(projectCode));
+        model.addAttribute("updatedProject",projectService.getByProjectCode(projectCode));
         model.addAttribute("listOfAllProjects",projectService.listAllProjects());
         model.addAttribute("managers",userService.listAllByRole("manager"));
 
@@ -57,15 +60,15 @@ public class ProjectController {
         model.addAttribute("updateProject",projectService.getByProjectCode(projectCode));
 
         projectService.update(projectService.getByProjectCode(projectCode));
-        return "/pages/project/project-update";
-    }
+        return "redirect:/project/create";
+}
 
-    @DeleteMapping("/delete/{projectCode}")
+    @GetMapping("/delete/{projectCode}")
     public String delete(@PathVariable("projectCode") String projectCode){
 
         projectService.delete(projectCode);
 
-        return "redirect:project/create";
+        return "redirect:/project/create";
     }
 
     @GetMapping("/complete/{projectCode}")
@@ -73,6 +76,6 @@ public class ProjectController {
 
 
         projectService.complete(projectCode);
-        return "redirect:project/create";
+        return "redirect:/project/create";
     }
 }

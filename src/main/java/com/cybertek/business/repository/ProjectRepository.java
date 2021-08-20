@@ -8,5 +8,10 @@ import org.springframework.stereotype.Repository;
 public interface ProjectRepository extends JpaRepository<Project,Long> {
 
 
+
     Project findByProjectCode(String projectCode);
+
+
+
+
 }

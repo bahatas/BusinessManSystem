@@ -4,6 +4,7 @@ import com.cybertek.business.dto.ProjectDTO;
 import com.cybertek.business.entity.Project;
 import com.cybertek.business.enums.Status;
 import com.cybertek.business.mapper.MapperUtil;
+import com.cybertek.business.mapper.ProjectMapper;
 import com.cybertek.business.repository.ProjectRepository;
 import com.cybertek.business.service.ProjectService;
 import org.apache.catalina.mapper.Mapper;
@@ -20,17 +21,21 @@ public class ProjectServiceImpl implements ProjectService {
 
     private ProjectRepository projectRepository;
     private MapperUtil mapperUtil;
+    private ProjectMapper projectMapper;
 
 
-    public ProjectServiceImpl(ProjectRepository projectRepository, MapperUtil mapperUtil) {
+    public ProjectServiceImpl(ProjectRepository projectRepository, MapperUtil mapperUtil, ProjectMapper projectMapper) {
         this.projectRepository = projectRepository;
         this.mapperUtil = mapperUtil;
+        this.projectMapper = projectMapper;
     }
 
     @Override
     public ProjectDTO getByProjectCode(String projectCode) {
 
-        return null;
+        Project byProjectCode = projectRepository.findByProjectCode(projectCode);
+
+        return mapperUtil.convert(byProjectCode, new ProjectDTO());
     }
 
     @Override
@@ -61,22 +66,35 @@ public class ProjectServiceImpl implements ProjectService {
     public void update(ProjectDTO projectDTO) {
 
         Project project = projectRepository.findByProjectCode(projectDTO.getProjectCode());
-        mapperUtil.convert(projectDTO, convertedToEntity);
+        Project convertedProject = projectMapper.convertToEntity(projectDTO);
 
-        project.setLastUpdateDateTime(LocalDateTime.now());
-        project.setLastUpdateUserId(1L); // todo after security implementation
 
-        projectRepository.save(project);
+
+        //status and id should come from database
+        convertedProject.setId(project.getId());
+        convertedProject.setStatus(project.getStatus());
+
+
+        convertedProject.setLastUpdateDateTime(LocalDateTime.now());
+        convertedProject.setLastUpdateUserId(1L); // todo after security implementation
+
+        projectRepository.save(convertedProject);
 
     }
 
     @Override
     public void delete(String projectCode) {
 
+        Project byProjectCode = projectRepository.findByProjectCode(projectCode);
+        byProjectCode.setIsDeleted(true);
+        projectRepository.save(byProjectCode);
     }
 
     @Override
     public void complete(String projectCode) {
+        Project byProjectCode = projectRepository.findByProjectCode(projectCode);
+        byProjectCode.setStatus(Status.COMPLETE);
+        projectRepository.save(byProjectCode);
 
     }
 

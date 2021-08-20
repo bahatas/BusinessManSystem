@@ -35,9 +35,9 @@
 
                                         <!--   ------------------------FORM START----------------------------- -->
                                         <div class="col">
-                                            <form class="needs-validation" novalidate th:action="@{/project/create}"
+                                            <form class="needs-validation" novalidate th:action="@{/project/update/{projectCode}(projectCode=${updatedProject.projectCode})}"
                                                   th:method="post"
-                                                  th:object="${project}">
+                                                  th:object="${updatedProject}">
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="form-group">
@@ -73,10 +73,11 @@
                                                             <label for="input-select">Assigned Manager</label>
                                                             <select class="form-control" id="input-select"
                                                                     th:field="*{assignedManager}">
-                                                                <option th:value="''" th:text="Select"></option>
+<!--                                                                <option th:value="''" th:text="Select"></option>-->
                                                                 <option th:each="manager:${managers}"
                                                                         th:value="${manager.userName}"
                                                                         th:text="${manager.firstName + ' '+manager.lastName}"
+
 
                                                                 ></option>
 
@@ -179,16 +180,16 @@
                                                     <td th:text="${project.assignedManager.firstName + ' ' + project.assignedManager.lastName}"></td>
                                                     <td th:text="${project.status}"></td>
                                                     <td class="actions">
-                                                        <a th:href="@{/project/update/{id}(id=${project.projectCode})}">
+                                                        <a th:href="@{/project/update/{projectCode}(projectCode=${project.projectCode})}">
                                                             <button type="button" class="btn btn-warning btn-sm">Update
                                                             </button>
                                                         </a>
-                                                        <a th:href="@{/project/delete/{id}(id=${project.projectCode})}">
+                                                        <a th:href="@{/project/delete/{projectCode}(projectCode=${project.projectCode})}">
                                                             <button type="button" class="btn btn-secondary btn-sm">
                                                                 Delete
                                                             </button>
                                                         </a>
-                                                        <a th:href="@{/project/complete/{id}(id=${project.projectCode})}">
+                                                        <a th:href="@{/project/complete/{projectCode}(projectCode=${project.projectCode})}">
                                                             <button type="button" class="btn btn-facebook btn-sm">
                                                                 Complete
                                                             </button>
