@@ -7,7 +7,10 @@
 
 </head>
 <body>
-<div th:replace="fragments/dashboard :: dashboard">Dashboard</div>
+<div class="wrapper col1">
+    <div th:replace="fragments/dashboard :: dashboard"></div>
+
+</div>
 
 
 <div class="wrapper col2">
@@ -197,7 +200,7 @@
                                     </header>
                                     <div class="panel-body">
                                         <div class="table-responsive">
-                                            <table class="table table-dark shadow p-3 mb-5 bg-blue rounded" >
+                                            <table class="table table-striped table-dark" >
                                                 <thead>
                                                 <tr>
                                                     <th scope="col">Name</th>

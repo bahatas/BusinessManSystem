@@ -42,9 +42,9 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public TaskDTO findById(Long id) {
-        Optional<Task> byId = taskRepository.findById(id);
+        Task task = taskRepository.findById(id).get();
 
-        return mapperUtil.convert(byId, new TaskDTO());
+        return mapperUtil.convert(task, new TaskDTO());
     }
 
     @Override
@@ -71,6 +71,10 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void update(TaskDTO taskDTO) {
 
+        Task taskToUpdate = taskRepository.findById(taskDTO.getId()).get();
+
+        taskToUpdate.setAssigedDate(LocalDateTime.now());
+        taskRepository.save(taskToUpdate);
 
     }
 
