@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: dashboard">
-    <title>User Create</title>
+
     <!--    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>-->
 
 
@@ -17,58 +17,49 @@
 
             <section class="panel panel-transparent">
                 <header class="panel-heading">
-                    <h2 class="panel-title">Task Assign Page</h2>
+                    <h2 class="panel-title">Task Assig Page</h2>
                 </header>
 
                 <div class="panel-body">
 
                     <!-- ------------------------FORM START----------------------------- -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <form class="needs-validation" novalidate th:action="@{/task/create}"
-                              th:object="${task}"
-                              th:method="post">
+                        <form class="needs-validation" novalidate th:action="@{/project/create}"
+                              th:method="post" >
                             <div class="row">
                                 <div class="col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <label for="input-select-pr">Select Project</label>
-                                        <select class="form-control" id="input-select-pr"
-                                                required="required" th:field="*{projectDTO}">
-
-                                            <option th:value="''" th:text="Select"></option>
-                                            <option placeholder="project name"
-                                                    th:each="project :${projects}"
-                                                    th:value="${project.id}"
-                                                    th:text="${project.projectName}"></option>
-
-                                        </select>
+                                        <label for="projectname" class="col-form-label">Project
+                                            Name</label>
+                                        <input id="projectname" type="text" class="form-control"
+                                               placeholder="project name" required
+                                        >
+                                        <div class="invalid-feedback">
+                                            Please enter project name.
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="projected" class="col-form-label">Project
+                                            Code</label>
+                                        <input id="project" type="text" class="form-control"
+                                               placeholder="project code" required
+                                        >
+                                        <div class="invalid-feedback">
+                                            Please enter project code.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <label for="input-select-ae">Assigned Employee</label>
-                                        <select class="form-control" id="input-select-ae"
-                                                required="required" th:field="*{userDTO}">
-
-                                            <option th:each="employee :${employees}"
-                                                    th:value="${employee.id}"
-                                                    th:text="${employee.firstName+' '+employee.lastName}"></option>
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <label for="projected" class="col-form-label">Task
-                                            Subject</label>
+                                        <label for="projected" class="col-form-label">Project
+                                            Code</label>
                                         <input id="projected" type="text" class="form-control"
-                                               placeholder="task Subject" required th:field="*{taskSubject}"
+                                               placeholder="project code" required
                                         >
                                         <div class="invalid-feedback">
-                                            Please enter task subject.
+                                            Please enter project code.
                                         </div>
                                     </div>
                                 </div>
@@ -76,19 +67,53 @@
                             <div class="row">
                                 <div class="col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <label for="detail" class="col-form-label">Task
-                                            Detail</label>
-                                        <input id="detail" type="text" class="form-control"
-                                               placeholder="task details" required th:field="*{taskDetail}"
-                                        >
-                                        <div class="invalid-feedback">
-                                            Please enter task detail.
+                                        <label for="input-select">Assigned Manager</label>
+                                        <select class="form-control" id="input-select"
+                                                required="required">
+                                            <option th:value="''" th:text="Select"></option>
+                                            <!--                                            <option th:each="manager :${managers}"-->
+                                            <!--                                                    th:value="${manager.userName}"-->
+                                            <!--                                                    th:text="${manager.firstName+' '+manager.lastName}"></option>-->
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3 col-md-3">
+                                    <div class="form-group">
+                                        <label>Project Start Date</label><br>
+                                        <div class="input-group date" id="datetimepicker7"
+                                             data-target-input="nearest">
+                                            <input type="date"
+                                                   class="form-control datetimepicker-input"
+                                                   data-target="#datetimepicker7"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-md-3">
+                                    <div class="form-group">
+                                        <label>Project End Date</label>
+                                        <div class="input-group date" id="datetimepicker8"
+                                             data-target-input="nearest">
+                                            <input type="date" th:text="date"
+                                                   class="form-control datetimepicker-input"
+                                                   data-target="#datetimepicker8"/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Project
+                                            Detail</label>
+                                        <textarea class="form-control"
+                                                  id="exampleFormControlTextarea1"
+                                                  rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-sm-6 col-md-6">
                                     <div class="float-right">

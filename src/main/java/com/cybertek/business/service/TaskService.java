@@ -13,7 +13,7 @@ public interface TaskService {
 
     List<TaskDTO> listAllTasks();
     TaskDTO findById(Long id);
-    Task save(TaskDTO taskDTO);
+    void save(TaskDTO taskDTO);
     void delete(Long id);
     void update(TaskDTO taskDTO);
 

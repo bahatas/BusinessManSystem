@@ -77,4 +77,10 @@ public class ProjectController {
         projectService.complete(projectCode);
         return "redirect:/project/create";
     }
+
+    @GetMapping("manager/complete/status")
+    public String managerComplete(){
+
+        return "pages/project/project-status";
+    }
 }
