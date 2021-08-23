@@ -78,9 +78,11 @@ public class ProjectController {
         return "redirect:/project/create";
     }
 
-    @GetMapping("manager/complete/status")
-    public String managerComplete(){
+    @GetMapping("/manager/complete")
+    public String managerComplete(Model model, ProjectDTO projectDTO){
 
-        return "pages/project/project-status";
+        model.addAttribute("projects",projectService.listAllProjects());
+
+        return "pages/manager/project-status";
     }
 }

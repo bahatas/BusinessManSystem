@@ -22,7 +22,7 @@ public interface ProjectService {
 
     void complete(String projectCode);
 
-    List<ProjectDTO> readAllByAssignedManager();
+    List<ProjectDTO> readAllByAssignedManager(String username);
     List<ProjectDTO> readAllProjectDetails();
     List<ProjectDTO> listNonCompletedProjects();
 
