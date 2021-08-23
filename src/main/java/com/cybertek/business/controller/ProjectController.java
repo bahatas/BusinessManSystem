@@ -78,10 +78,23 @@ public class ProjectController {
         return "redirect:/project/create";
     }
 
-    @GetMapping("/manager/complete")
+    @GetMapping("/manager/status")
     public String managerComplete(Model model, ProjectDTO projectDTO){
 
         model.addAttribute("projects",projectService.listAllProjects());
+        model.addAttribute("managers",userService.listAllByRole("manager"));
+
+
+        return "pages/manager/project-status";
+    }
+
+    @PostMapping("/manager/status/{managerUserName}")
+    public String listAllWithManager(@PathVariable("managerUserName") String userName, Model model, ProjectDTO projectDTO){
+
+        model.addAttribute("projects",projectService.listAllProjects());
+        model.addAttribute("managers",userService.listAllByRole("manager"));
+        model.addAttribute("project",projectService.readAllByAssignedManager(userName));
+
 
         return "pages/manager/project-status";
     }
