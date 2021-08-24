@@ -2,6 +2,7 @@ package com.cybertek.business.controller;
 
 
 import com.cybertek.business.dto.ProjectDTO;
+import com.cybertek.business.dto.UserDTO;
 import com.cybertek.business.repository.ProjectRepository;
 import com.cybertek.business.service.ProjectService;
 import com.cybertek.business.service.UserService;
@@ -79,11 +80,10 @@ public class ProjectController {
     }
 
     @GetMapping("/manager/status")
-    public String managerComplete(Model model, ProjectDTO projectDTO){
+    public String managerComplete(Model model){
 
-        model.addAttribute("projects",projectService.listAllProjects());
+        model.addAttribute("projectlist",projectService.listAllProjects());
         model.addAttribute("managers",userService.listAllByRole("manager"));
-
 
         return "pages/manager/project-status";
     }
@@ -91,11 +91,12 @@ public class ProjectController {
     @PostMapping("/manager/status/{managerUserName}")
     public String listAllWithManager(@PathVariable("managerUserName") String userName, Model model, ProjectDTO projectDTO){
 
-        model.addAttribute("projects",projectService.listAllProjects());
+        model.addAttribute("projectlist",projectService.listAllProjects());
         model.addAttribute("managers",userService.listAllByRole("manager"));
         model.addAttribute("project",projectService.readAllByAssignedManager(userName));
+        model.addAttribute("manager",userService.findByUserName(userName));
 
 
-        return "pages/manager/project-status";
+        return "pages/manager/project-status-selectedmanager";
     }
 }
