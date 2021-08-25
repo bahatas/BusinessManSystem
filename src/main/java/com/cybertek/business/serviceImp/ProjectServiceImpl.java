@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -56,7 +57,11 @@ public class ProjectServiceImpl implements ProjectService {
         convert.setStatus(Status.OPEN);
 
 
+
+
         projectRepository.save(convert);
+
+
 
 
 
@@ -116,4 +121,20 @@ public class ProjectServiceImpl implements ProjectService {
     public List<ProjectDTO> listNonCompletedProjects() {
         return null;
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ProjectServiceImpl)) return false;
+        ProjectServiceImpl that = (ProjectServiceImpl) o;
+        return Objects.equals(projectRepository, that.projectRepository)
+                && Objects.equals(mapperUtil, that.mapperUtil) && Objects.equals(projectMapper, that.projectMapper);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(projectRepository, mapperUtil, projectMapper);
+    }
 }
+

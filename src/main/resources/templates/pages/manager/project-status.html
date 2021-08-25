@@ -52,26 +52,25 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text">
 
-                            <form class="ui form"
-
-                                  th:href="@{/project/manager/status/{managerUserName} (managerUserName=${eachmanager.userName})}"
-
-                                  th:object="${eachmanager}"
-                                  method="post">
+                            <form class="ui form" method="post">
 
                                 <div>
                                     <label>
-                                        <a >
-                                            <input type="checkbox" name="manager" class="option-input checkbox"
+                                        <a for="form" th:href="@{/project/manager/status/{managerUserName} (managerUserName=${eachmanager.userName})}">
+                                            <form id="form" class="ui form" method="post">
+                                            <input formmethod="post"
+                                                 data-th-value="${eachmanager.userName}"
+                                                    type="checkbox" name="manager" class="option-input checkbox"
                                                    th:value="${eachmanager.userName}"
                                                    th:text="${eachmanager.firstName +' '+eachmanager.lastName}"
                                                    onclick="submit();"
-                                                   />
+                                                 />
+                                            </form>
                                         </a>
                                     </label>
 
                                 </div>
-                            </form>
+
 
                         </div>
                     </div>

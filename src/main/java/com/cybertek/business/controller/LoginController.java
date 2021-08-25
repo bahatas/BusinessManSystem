@@ -12,8 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
 
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
     @GetMapping("/login")
     public String login(){
+
+        Object o = new Object();
+
         return "/login";
     }
 
