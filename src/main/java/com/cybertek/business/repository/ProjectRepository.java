@@ -1,6 +1,7 @@
 package com.cybertek.business.repository;
 
 import com.cybertek.business.entity.Project;
+import com.cybertek.business.enums.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +16,10 @@ public interface ProjectRepository extends JpaRepository<Project,Long> {
 
 
     List<Project> findByAssignedManager_UserName  (String username);
+
+    List<Project> findAllByStatusIsNot (Status status);
+
+
 
 
 

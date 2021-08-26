@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDTO> listAllByRole(String role) {
 
-        List<User> manager=userRepository.findAllByRoleDescriptionIgnoreCase("manager");
+        List<User> manager=userRepository.findAllByRoleDescriptionIgnoreCase(role);
 
 //        List<User> manager = userRepository.findAll().stream().filter(each ->
 //                each.getRole().getDescription().equalsIgnoreCase("manager")).collect(Collectors.toList());

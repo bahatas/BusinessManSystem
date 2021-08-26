@@ -43,42 +43,40 @@
 
     <div class="row">
       <div>
-        <h2>Select Manager</h2>
+        <h2>Selected Manager</h2>
       </div>
       <br>
-      <div class="input-group mb-3">
-        <form class="ui form" th:action="@{/project/manager/{username} (username=${manager.userName})}" th:object="${manager}"
-              method="post">
-          <div class="input-group mb-2" th:each="manager : ${managers}">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
+      <div class="input-group mb-3" th:object="${selectedmanager}">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <div>
+                <label>
+                  <input type="checkbox" name="manager" class="option-input checkbox"
+                         th:value="${selectedmanager.userName}"
+                         th:text="${selectedmanager.firstName +' '+selectedmanager.lastName}"
+                         onclick="submit();" th:checked="${selectedmanager.userName} ? 'checked'">
+                  <!--                         th:selected="(${eachmanager.userName} == *{userName})"/>-->
 
-
-
-                <div>
-                  <label>
-                    <input type="checkbox" name="manager" class="option-input checkbox"
-                           th:value="${manager.userName}"
-                           th:text="${manager.firstName +' '+manager.lastName}"
-                           th:field="*{userName}"
-                           onclick="submit();" th:checked="${eachmanager.userName} ? 'checked'"/>
-                  </label>
-
-                </div>
-
-
-
+                </label>
 
               </div>
+
+
             </div>
           </div>
-          <div class="row">
-            <div class="col">
-              <div class="float-right">
-                <button class="btn btn-success rounded" type="submit">Send
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="float-right">
+              <a th:href="@{/project/manager/status}">
+                <button class="btn btn-success rounded" type="button">Back
                 </button>
-              </div>
+              </a>
+
+
             </div>
+          </div>
           </div>
         </form>
       </div>
@@ -107,7 +105,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr th:each="project : ${projectlist}">
+                  <tr th:each="project : ${project}">
                     <td th:text="${project.projectCode}"></td>
                     <td th:text="${project.projectName}"></td>
                     <td th:text="${project.startDate + ' to ' + project.endDate}"></td>
@@ -117,7 +115,7 @@
                     <td>
                       <a th:if="${project.unCompletedCount == 0 && project.status.name() != 'Completed'}"
                          class="btn btn-info rounded-0"
-                         th:href="@{/project/manager/complete/{id}(id=${project.projectCode})}">Complete
+                         th:href="@{/project/manager/complete/{managerUserName}/{projectCode}(projectCode=${project.projectCode},managerUserName=${selectedmanager.userName})}">Complete
                       </a>
                       <a th:if="${project.unCompletedCount > 0 || project.status.name() == 'Completed'}"
                          class="btn btn-info rounded-0 disabled-button">Complete

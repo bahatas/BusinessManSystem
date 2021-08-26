@@ -94,9 +94,29 @@ public class ProjectController {
         model.addAttribute("projectlist",projectService.listAllProjects());
         model.addAttribute("managers",userService.listAllByRole("manager"));
         model.addAttribute("project",projectService.readAllByAssignedManager(userName));
-        model.addAttribute("manager",userService.findByUserName(userName));
+        model.addAttribute("selectedmanager",userService.findByUserName(userName));
 
 
         return "pages/manager/project-status-selectedmanager";
+    }
+    @GetMapping("/manager/status/{managerUserName}")
+    public String getListAllWithManager(@PathVariable("managerUserName") String userName, Model model, ProjectDTO projectDTO){
+
+        model.addAttribute("projectlist",projectService.listAllProjects());
+        model.addAttribute("managers",userService.listAllByRole("manager"));
+        model.addAttribute("project",projectService.readAllByAssignedManager(userName));
+        model.addAttribute("selectedmanager",userService.findByUserName(userName));
+
+
+        return "pages/manager/project-status-selectedmanager";
+    }
+
+    @GetMapping("/manager/complete/{managerUserName}/{projectCode}")
+    public String updateStatusByManager(@PathVariable("projectCode") String projectCode,@PathVariable("managerUserName") String userName){
+
+
+        projectService.complete(projectCode);
+        return "redirect:/project/manager/status/{managerUserName}";
+
     }
 }

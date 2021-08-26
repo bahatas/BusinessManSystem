@@ -46,18 +46,20 @@
                 <h2>Select Manager</h2>
             </div>
             <br>
-            <div class="input-group mb-3" th:each="eachmanager : ${managers}">
+            <div class="input-group mb-3" >
 
                 <div class="input-group mb-2" >
                     <div class="input-group-prepend">
                         <div class="input-group-text">
 
-                            <form class="ui form" method="post">
+
 
                                 <div>
                                     <label>
-                                        <a for="form" th:href="@{/project/manager/status/{managerUserName} (managerUserName=${eachmanager.userName})}">
-                                            <form id="form" class="ui form" method="post">
+                                        <a for="form" >
+                                            <form id="form" class="ui form" method="post"
+                                                  th:each="eachmanager : ${managers}"
+                                                  th:action="@{/project/manager/status/{managerUserName} (managerUserName=${eachmanager.userName})}">
                                             <input formmethod="post"
                                                  data-th-value="${eachmanager.userName}"
                                                     type="checkbox" name="manager" class="option-input checkbox"
