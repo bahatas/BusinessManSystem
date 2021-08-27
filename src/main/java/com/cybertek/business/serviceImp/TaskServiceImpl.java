@@ -12,6 +12,7 @@ import com.cybertek.business.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -53,7 +54,7 @@ public class TaskServiceImpl implements TaskService {
         Task taskEntity = mapperUtil.convert(taskDTO, new Task());
 
         taskEntity.setTaskStatus(Status.OPEN);
-        taskEntity.setAssigedDate(LocalDateTime.now());
+        taskEntity.setAssignedDate(LocalDate.now());
         taskRepository.save(taskEntity);
 
     }
@@ -73,7 +74,7 @@ public class TaskServiceImpl implements TaskService {
 
         Task taskToUpdate = taskRepository.findById(taskDTO.getId()).get();
 
-        taskToUpdate.setAssigedDate(LocalDateTime.now());
+        taskToUpdate.setAssignedDate(LocalDate.now());
         taskRepository.save(taskToUpdate);
 
     }

@@ -2,6 +2,7 @@ package com.cybertek.business.controller;
 
 
 import com.cybertek.business.dto.TaskDTO;
+import com.cybertek.business.enums.Status;
 import com.cybertek.business.service.ProjectService;
 import com.cybertek.business.service.TaskService;
 import com.cybertek.business.service.UserService;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/task")
@@ -72,4 +75,29 @@ public class TaskController {
 
         return "redirect:/task/create";
     }
+
+    @GetMapping("/employee")
+    public String getEmployee(Model model){
+
+        List<TaskDTO> taskList = taskService.listAllTasksBySttatusIsNot(Status.COMPLETE);
+
+        model.addAttribute("employeetasklist",taskList);
+
+        return "/pages/employee/pending-task";
+    }
+
+
+    @GetMapping("/emloyee/edit/{id}")
+    public String edittask(Model model, @PathVariable("id") Long id){
+        List<TaskDTO> taskList = taskService.listAllTasksBySttatusIsNot(Status.COMPLETE);
+        TaskDTO taskDTO = taskService.findById(id);
+
+        model.addAttribute("taskbyid",taskDTO);
+        model.addAttribute("employeetasklist",taskList);
+
+
+        return "pending-task";
+    }
+
+
 }

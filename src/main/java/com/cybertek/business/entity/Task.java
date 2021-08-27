@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -36,7 +37,8 @@ public class Task extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private Status taskStatus;
 
-    private LocalDateTime assigedDate;
+    private LocalDate assignedDate;
+
 
 
 }
