@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -37,6 +38,8 @@ public class Task extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private Status taskStatus;
 
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate assignedDate;
 
 
