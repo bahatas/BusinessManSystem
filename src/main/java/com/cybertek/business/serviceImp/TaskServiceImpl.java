@@ -96,7 +96,9 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskDTO> listAllTasksBySttatusIsNot(Status status) {
-        return null;
+        return taskRepository.findAllByTaskStatusIsNot(Status.COMPLETE).stream()
+                .map(each->mapperUtil.convert(each,new TaskDTO()))
+                .collect(Collectors.toList());
     }
 
     @Override

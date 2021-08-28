@@ -6,6 +6,7 @@ import com.cybertek.business.enums.Status;
 import com.cybertek.business.mapper.MapperUtil;
 import com.cybertek.business.mapper.ProjectMapper;
 import com.cybertek.business.repository.ProjectRepository;
+import com.cybertek.business.repository.TaskRepository;
 import com.cybertek.business.service.ProjectService;
 import org.springframework.stereotype.Service;
 
@@ -21,12 +22,14 @@ public class ProjectServiceImpl implements ProjectService {
     private ProjectRepository projectRepository;
     private MapperUtil mapperUtil;
     private ProjectMapper projectMapper;
+    private TaskRepository taskRepository;
 
 
-    public ProjectServiceImpl(ProjectRepository projectRepository, MapperUtil mapperUtil, ProjectMapper projectMapper) {
+    public ProjectServiceImpl(ProjectRepository projectRepository, MapperUtil mapperUtil, ProjectMapper projectMapper, TaskRepository taskRepository) {
         this.projectRepository = projectRepository;
         this.mapperUtil = mapperUtil;
         this.projectMapper = projectMapper;
+        this.taskRepository = taskRepository;
     }
 
     @Override
