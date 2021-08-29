@@ -88,16 +88,15 @@ public class TaskController {
 
 
     @GetMapping("/emloyee/edit/{id}")
-    public String edittask(Model model, @PathVariable("id") Long id){
+    public String edittask(Model model, @PathVariable("id") Long id) {
         List<TaskDTO> taskList = taskService.listAllTasksBySttatusIsNot(Status.COMPLETE);
         TaskDTO taskDTO = taskService.findById(id);
 
-        model.addAttribute("taskbyid",taskDTO);
-        model.addAttribute("employeetasklist",taskList);
+        model.addAttribute("taskbyid", taskDTO);
+        model.addAttribute("employeetasklist", taskList);
 
+        return "/templates/pages/employee/edit-pendingtasks";
 
-        return "pending-task";
     }
-
 
 }

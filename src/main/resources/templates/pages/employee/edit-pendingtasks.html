@@ -41,99 +41,17 @@
 
                                 <section class="panel panel-transparent">
                                     <header class="panel-heading">
-                                        <h2 class="panel-title">User Create</h2>
+                                        <h2 class="panel-title"></h2>
                                     </header>
 
                                     <div class="panel-body">
 
                                         <!-- ------------------------FORM START----------------------------- -->
-                                        <form class="needs-validation" novalidate th:action="@{/task/employee/edit/{id} (id={taskbyid.id})"
-                                              method="post" th:object="${taskbyid}">
 
-                                            <div class="row">
-                                                <div class="col-sm-6 col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="input-select-pr">Select Project</label>
-                                                        <select class="form-control" id="input-select-pr"
-                                                                required="required" th:field="*{project}">
+                                        <div class="col-sm -6 com-md-6">
 
-                                                            <option th:value="''" th:text="Select"></option>
-                                                            <option placeholder="project name"
-                                                                    th:each="project :${projects}"
-                                                                    th:value="${project.projectCode}"
-                                                                    th:text="${project.projectName}"></option>
+                                        </div>
 
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-6 col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="input-select-ae">Assigned Employee</label>
-                                                        <select class="form-control" id="input-select-ae"
-                                                                required="required" th:field="*{assignedEmployee}">
-                                                            <option th:value="''" th:text="Select"></option>
-                                                            <option th:each="employee :${employees}"
-                                                                    th:value="${employee.userName}"
-                                                                    th:text="${employee.firstName +' '+employee.lastName}"></option>
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-6 col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="projected" class="col-form-label">Task
-                                                            Subject</label>
-                                                        <input id="projected" type="text" class="form-control"
-                                                               placeholder="task Subject" required th:field="*{taskSubject}"
-                                                        >
-                                                        <div class="invalid-feedback">
-                                                            Please enter task subject.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-6 col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="detail" class="col-form-label">Task
-                                                            Detail</label>
-                                                        <input id="detail" type="text" class="form-control"
-                                                               placeholder="task details" required th:field="*{taskDetail}"
-                                                        >
-                                                        <div class="invalid-feedback">
-                                                            Please enter task detail.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-6 col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="detail" class="col-form-label">Status
-                                                        </label>
-                                                        <input id="status" type="text" class="form-control"
-                                                               placeholder="task details" required th:field="*{}"
-                                                        >
-                                                        <div class="invalid-feedback">
-                                                            Please enter task detail.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-sm-12 col-md-12 col-lg-12">
-                                                    <div class="float-right">
-                                                        <button type="submit" class="btn btn-success rounded">Save</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </form>
                                         <!-- ------------------------FORM END----------------------------- -->
 
                                     </div>
@@ -155,11 +73,11 @@
                         <div class="col-md-12">
                             <section class="panel">
                                 <header class="panel-heading">
-                                    <h2 class="panel-title">User List</h2>
+                                    <h2 class="panel-title">Task List</h2>
                                 </header>
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-dark" >
+                                        <table class="table table-striped table-hover table-dark" >
                                             <thead>
                                             <tr>
                                                 <th scope="col">Project</th>
@@ -173,14 +91,14 @@
 
                                             <tbody>
 
-                                            <tr th:each="task : ${employeetasklist}">
+                                            <tr th:each="task : ${taskbyid}">
                                                 <td th:text="${task.project.projectCode + ' ' + task.project.projectName}"> </td>
                                                 <td th:text="${task.taskSubject}"> </td>
-                                                <td th:text="${task.assignedEmployee}"> </td>
+                                                <td th:text="${task.assignedEmployee.firstName + ' '+task.assignedEmployee.lastName}"> </td>
                                                 <td th:text="${task.assignedDate}"> </td>
                                                 <td th:text="${task.taskStatus}"> </td>
                                                 <td class="action">
-                                                    <a th:href="@{/task/employee/edit/{id}(id= ${taskbyid.id})}"><button TYPE="button" CLASS="btn btn-brand-link btn-sm"></button></a>
+                                                    <a th:href="@{/task/employee/edit/{id}(id= ${task.id})}"><button TYPE="button" CLASS="btn btn-brand-link btn-sm"></button></a>
 
                                                 </td>
                                             </tr>
