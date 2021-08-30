@@ -179,19 +179,21 @@
                                                     <td th:text="${#temporals.format(project.startDate,'MM.dd.yyyy') +' ' + #temporals.format(project.endDate,'MM.dd.yyyy')}"></td>
                                                     <td th:text="${project.assignedManager.firstName + ' ' + project.assignedManager.lastName}"></td>
                                                     <td th:text="${project.status}"></td>
-                                                    <td class="actions">
+                                                    <td class="actions" >
                                                         <a th:href="@{/project/update/{projectCode}(projectCode=${project.projectCode})}">
-                                                            <button type="button" class="btn btn-warning btn-sm">Update
+                                                            <button type="button" class="btn btn-warning btn-xs">Update
                                                             </button>
                                                         </a>
                                                         <a th:href="@{/project/delete/{projectCode}(projectCode=${project.projectCode})}">
-                                                            <button type="button" class="btn btn-secondary btn-sm">
+                                                            <button type="button" class="btn btn-secondary btn-xs">
                                                                 Delete
                                                             </button>
                                                         </a>
-                                                        <a th:href="@{/project/complete/{projectCode}(projectCode=${project.projectCode})}">
-                                                            <button type="button" class="btn btn-facebook btn-sm">
+
+                                                            <button type="button" class="btn btn-facebook btn-xs">
                                                                 Complete
+
+                                                                <a th:href="@{/project/complete/{projectCode}(projectCode=${project.projectCode})}"></a>
                                                             </button>
                                                         </a>
                                                     </td>
