@@ -2,7 +2,9 @@ package com.cybertek.business.converter;
 
 import com.cybertek.business.dto.TaskDTO;
 import com.cybertek.business.service.TaskService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -10,11 +12,11 @@ import org.springframework.stereotype.Component;
 @ConfigurationPropertiesBinding
 public class TaskDtoConverter implements Converter<String, TaskDTO> {
 
+    @Autowired
+    @Lazy
     private TaskService taskService;
 
-    public TaskDtoConverter(TaskService taskService) {
-        this.taskService = taskService;
-    }
+
 
 
     @Override
