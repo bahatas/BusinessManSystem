@@ -81,12 +81,15 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public int totalNonCompletedTasks(String projectCode) {
-        return 0;
+        List<Task> allByTaskStatusIsNot = taskRepository.findAllByTaskStatusIsNot(Status.COMPLETE);
+
+        return allByTaskStatusIsNot.size();
     }
 
     @Override
     public int totalCompletedTask(String projectCode) {
-        return 0;
+        return (int) taskRepository.findAll().stream().filter(each ->
+                each.getTaskStatus() == Status.COMPLETE).count();
     }
 
     @Override

@@ -56,17 +56,23 @@
 
                                 <div>
                                     <label>
-                                        <a for="form" >
-                                            <form id="form" class="ui form" method="post"
+                                        <a>
+                                            <form id="form" class="ui form"  method="post"
                                                   th:each="eachmanager : ${managers}"
                                                   th:action="@{/project/manager/status/{managerUserName} (managerUserName=${eachmanager.userName})}">
-                                            <input formmethod="post"
-                                                 data-th-value="${eachmanager.userName}"
-                                                    type="checkbox" name="manager" class="option-input checkbox"
-                                                   th:value="${eachmanager.userName}"
-                                                   th:text="${eachmanager.firstName +' '+eachmanager.lastName}"
-                                                   onclick="submit();"
-                                                 />
+                                                <div class="input-group-text facebook-color" >
+                                                    <input id="checkbox" formmethod="post"
+                                                           type="checkbox" name="manager" class="option-input checkbox"
+                                                    data-th-value="${eachmanager.userName}"
+                                                    th:value="${eachmanager.userName}"
+                                                    th:text="${eachmanager.firstName +' '+eachmanager.lastName}"
+                                                    onclick="submit();">
+
+                                                </div>
+
+
+
+
                                             </form>
                                         </a>
                                     </label>

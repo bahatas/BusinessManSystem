@@ -7,3 +7,5 @@ insert into users( insert_date_time, insert_user_id, is_deleted, last_update_dat
 values ('2021-01-05 00:00:00', 1, false, '2021-01-05 00:00:00', 1, true, 'admin', 'MALE', 'admin', 'admin@admin.com',
         1, '$2a$10$nAB5j9G1c3JHgg7qzhiIXO7cqqr5oJ3LXRNQJKssDUwHXzDGUztNK');
 
+insert into "businessMan".public.projects_table(id, insert_date_time, insert_user_id, is_deleted, last_update_date_time, last_update_user_id, end_date, project_code, project_detail, project_name, start_date, status, manager_id) VALUES
+(1,'2021-01-05 00:00:00',1,false,'2021-01-06 00:00:00',1,'2021-01-05','1006A','Env arr detaieled','PR1','2021-02-02','OPEN',1)

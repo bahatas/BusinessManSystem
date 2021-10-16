@@ -18,6 +18,7 @@ public class LoginController {
     }
 
     @GetMapping("/login")
+
     public String login(){
 
         Object o = new Object();

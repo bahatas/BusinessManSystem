@@ -1,6 +1,7 @@
 package com.cybertek.business.controller;
 
 
+import com.cybertek.business.annotation.ExecutionTime;
 import com.cybertek.business.dto.UserDTO;
 import com.cybertek.business.service.RoleService;
 import com.cybertek.business.service.UserService;
@@ -22,6 +23,7 @@ public class UserController {
     RoleService roleService;
 
     @GetMapping("/create")
+    @ExecutionTime
     public String create(Model model) {
 
         model.addAttribute("user", new UserDTO());
@@ -32,6 +34,7 @@ public class UserController {
     }
 
     @PostMapping("/create")
+    @ExecutionTime
     public String insertUser(Model model, UserDTO userDTO) {
 
         userService.save(userDTO);
@@ -39,6 +42,7 @@ public class UserController {
     }
 
     @GetMapping("/update/{userName}")
+    @ExecutionTime
     public String editUser(@PathVariable("userName") String username,Model model) {
         model.addAttribute("updatedUser", userService.findByUserName(username));
         model.addAttribute("userList", userService.listAllUser());
@@ -47,7 +51,9 @@ public class UserController {
         return "pages/user/user-update";
     }
 
+
     @PostMapping("/update/{username}")
+    @ExecutionTime
     public String updateUser(Model model, @PathVariable("username") String username,UserDTO userDTO) {
         userService.update(userDTO);
 
@@ -55,6 +61,7 @@ public class UserController {
     }
 
     @GetMapping("/delete/{username}")
+    @ExecutionTime
     public String deleteUSer(Model model, @PathVariable("username") String username) {
 
 

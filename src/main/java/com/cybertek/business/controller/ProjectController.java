@@ -8,7 +8,6 @@ import com.cybertek.business.service.ProjectService;
 import com.cybertek.business.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.context.support.ResourceBundleThemeSource;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -28,9 +27,7 @@ public class ProjectController {
 
         model.addAttribute("project",new ProjectDTO());
         model.addAttribute("listOfAllProjects",projectService.listAllProjects());
-
-        System.out.println("projectService.listAllProjects() = " + projectService.listAllProjects());
-        model.addAttribute("managers",userService.listAllByRole("manager"));
+        model.addAttribute("managers",userService.listAllByRole("Manager"));
 
         return "/pages/project/project-create";
     }
