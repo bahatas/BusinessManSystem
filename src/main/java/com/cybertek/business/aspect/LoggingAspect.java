@@ -2,11 +2,8 @@ package com.cybertek.business.aspect;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.context.annotation.Configuration;
 
 @Aspect
@@ -23,11 +20,26 @@ public class LoggingAspect {
 
 
 //    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        log.info();
+        log.info("Before  Method :{}- Parameters: {} ",joinPoint.getSignature().toString(),joinPoint.getArgs());
 
     }
 
 
+    @AfterReturning(pointcut ="anyControllerOperation()",returning ="results" )
+    public void anyAfterReturningControllerOperationAdvice(JoinPoint joinPoint, Object results){
+       //    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+       // log.info("AfterReturning(User : {} Method : {} - Results : {}",auth.getName(),joinPoint.getSignature().toShortString(),results.toString());
 
+        log.info("AfterReturning( Method : {} - Results : {}",joinPoint.getSignature().toShortString(),results.toString());
+
+    }
+
+    @AfterThrowing(pointcut = "anyControllerOperation()",throwing = "exception")
+    public void anyAfterThrowingControllerOperationAdvice(JoinPoint joinPoint,RuntimeException exception){
+
+
+        log.info("After throwing -->( Method : {} - Exception : {}",exception.getLocalizedMessage());
+
+    }
 
     }
